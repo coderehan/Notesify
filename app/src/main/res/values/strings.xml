@@ -13,4 +13,5 @@
     <string name="login_to_access_your_notes">Login to access your notes</string>
     <string name="sign_in">log in</string>
     <string name="don_t_have_an_account_register_now">Don\'t have an account? <font color="#2196F3">Register Now</font></string>
+    <string name="developer_name">Mohammed Rehan</string>
 </resources>
