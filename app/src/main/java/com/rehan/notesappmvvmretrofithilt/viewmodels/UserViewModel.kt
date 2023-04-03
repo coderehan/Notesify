@@ -10,22 +10,30 @@ import com.rehan.notesappmvvmretrofithilt.models.UserResponse
 import com.rehan.notesappmvvmretrofithilt.repositories.UserRepository
 import com.rehan.notesappmvvmretrofithilt.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+// ViewModel needs repository object as per the MVVM pattern
+// @Inject constructor is used inorder to add the dependency of UserRepository in this viewmodel
 @HiltViewModel
 class UserViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
 
     val userResponseLiveData get() = userRepository.userResponseLiveData
 
+    // We will write some functions in viewmodel and will call those functions in our fragment
+    // We will call this method when user clicks on SignUp button
     fun registerUser(userRequest: UserRequest) {
-        viewModelScope.launch {
+        // Executing this code in background thread of coroutines
+        viewModelScope.launch(Dispatchers.IO) {
             userRepository.registerUser(userRequest)
         }
     }
 
+    // We will call this method when user clicks on SignIn button
     fun loginUser(userRequest: UserRequest) {
-        viewModelScope.launch {
+        // Executing this code in background thread of coroutines
+        viewModelScope.launch(Dispatchers.IO) {
             userRepository.loginUser(userRequest)
         }
     }

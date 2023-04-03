@@ -10,6 +10,8 @@ import org.json.JSONObject
 import retrofit2.Response
 import javax.inject.Inject
 
+// Repository will talk with API interface as per MVVM pattern
+// @Inject constructor is used inorder to add the dependency of NotesAPI in this repository
 class NotesRepository @Inject constructor(private val notesAPI: NotesAPI) {
 
     private val _notesLiveData = MutableLiveData<NetworkResult<List<NotesResponse>>>()
@@ -40,19 +42,19 @@ class NotesRepository @Inject constructor(private val notesAPI: NotesAPI) {
 
     suspend fun createNotes(notesRequest: NotesRequest) {
         _statusLiveData.postValue(NetworkResult.Loading())
-        val response = notesAPI.createNotes(notesRequest)
+        val response = notesAPI.createNotes(notesRequest)   // Raising API request
         handleResponse(response, "Notes created successfully")
     }
 
     suspend fun deleteNotes(noteId: String) {
         _statusLiveData.postValue(NetworkResult.Loading())
-        val response = notesAPI.deleteNotes(noteId)
+        val response = notesAPI.deleteNotes(noteId)         // Raising API request
         handleResponse(response, "Notes deleted successfully")
     }
 
     suspend fun updateNotes(noteId: String, notesRequest: NotesRequest) {
         _statusLiveData.postValue(NetworkResult.Loading())
-        val response = notesAPI.updateNotes(noteId, notesRequest)
+        val response = notesAPI.updateNotes(noteId, notesRequest)       // Raising API request
         handleResponse(response, "Notes updated successfully")
     }
 

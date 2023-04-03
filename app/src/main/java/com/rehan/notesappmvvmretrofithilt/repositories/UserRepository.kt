@@ -10,12 +10,14 @@ import org.json.JSONObject
 import retrofit2.Response
 import javax.inject.Inject
 
+// Repository will talk with API interface as per MVVM pattern
+// @Inject constructor is used inorder to add the dependency of UserAPI in this repository
 class UserRepository @Inject constructor(private val userAPI: UserAPI) {
 
     // Generally we create 2 live data properties (1) private MutableLiveData to set our data in repository itself (2) public LiveData to access it publicly
     private val _userResponseLiveData = MutableLiveData<NetworkResult<UserResponse>>()
     val userResponseLiveData: LiveData<NetworkResult<UserResponse>>
-        get() = _userResponseLiveData
+        get() = _userResponseLiveData       // We will pass the mutable livedata object to public livedata
 
     suspend fun registerUser(userRequest: UserRequest) {
         _userResponseLiveData.postValue(NetworkResult.Loading())
@@ -26,7 +28,7 @@ class UserRepository @Inject constructor(private val userAPI: UserAPI) {
 
     suspend fun loginUser(userRequest: UserRequest) {
         _userResponseLiveData.postValue(NetworkResult.Loading())
-        val response = userAPI.signup(userRequest)
+        val response = userAPI.signin(userRequest)
         handleResponse(response)
     }
 

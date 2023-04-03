@@ -25,7 +25,7 @@ class RegisterFragment : Fragment() {
     // Inorder to make it non nullable we use one more variable and make it non nullable through get method by adding !!
     private val binding get() = _binding!!                  // !! means definitely it is not null (or) it means null safety
 
-    // Using inbuilt viewModels() method, we don't need to initialize ViewModelProvider. This  inbuilt function will generate behind the scene
+    // Using inbuilt viewModels() method, we don't need to initialize ViewModelProvider. This inbuilt function will generate behind the scene
     // Calling ViewModel class here in fragment
     private val userViewModel by viewModels<UserViewModel>()
 
@@ -51,6 +51,7 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // When user click on sign up button, we will check validation
         binding.btnSignup.setOnClickListener {
             val validationResult = validateUserInput()          // Passing function to variable
             if(validationResult.first){                         // If first value i.e. boolean is true, we will execute this successful registration
@@ -98,9 +99,9 @@ class RegisterFragment : Fragment() {
         })
     }
 
-
+    // onDestroyView() is written for better performance
     // When view (fragment) is destroyed, it means it has nothing now. So we set our binding object also to null. When there is no view, data binding object should also be not there
-    // When view created, data binding should also be created for that. when view destroyed, data binding object should not be destroyed for that
+    // When view created, data binding should also be created for that. when view destroyed, data binding object should also be destroyed for that
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
