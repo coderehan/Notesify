@@ -39,8 +39,9 @@ class RegisterFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
-        // If we have token already, we will navigate user to main fragment directly
-        if(tokenManager.getToken() != null){
+        // Here in this registration page, we will check whether we have token or not.
+        // If we have token already, we will redirect user to main screen instead of showing signup page again.
+        if(tokenManager.getToken() != null){        // != null means we have token
             findNavController().navigate(R.id.action_registerFragment_to_mainFragment)
         }
 
@@ -86,6 +87,7 @@ class RegisterFragment : Fragment() {
             binding.progressBar.visibility = View.GONE       // Hiding progress bar when we observe the data
             when(it){
                 is NetworkResult.Success -> {
+                    // When we get success response in postman for registration page, we will be getting response which has token as well. we will save that token response.
                     tokenManager.saveToken(it.data!!.token)      // Saving token when user sign up
                     findNavController().navigate(R.id.action_registerFragment_to_mainFragment)
                 }

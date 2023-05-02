@@ -7,6 +7,8 @@ import retrofit2.http.*
 
 interface NotesAPI {
 
+    // All these endpoints are authenticated endpoints. We need to pass token in header because every user will be having his own unique id called token.
+
     @GET("/note")
     suspend fun getNotes(): Response<List<NotesResponse>>
 

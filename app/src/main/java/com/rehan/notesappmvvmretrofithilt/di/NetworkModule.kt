@@ -31,17 +31,21 @@ class NetworkModule {
         return OkHttpClient.Builder().addInterceptor(authInterceptor).build()
     }
 
-    // In UserAPI, we don't need token. So we don't need to add client method here
+    // In UserAPI, we don't need token. So we don't need to add client method here.
     @Singleton
     @Provides
     fun providesUserAPI(retrofitBuilder: Retrofit.Builder): UserAPI {
         return retrofitBuilder.build().create(UserAPI::class.java)
     }
 
-    // In NotesAPI, we need token. So here we will add client method and pass okHttpClient object to it
+    // In NotesAPI, we need token because every user will have their own notes. So we need to authenticate user as per their token.
+    // So here we will add client method and pass okHttpClient object to it.
     @Singleton
     @Provides
     fun providesNotesAPI(retrofitBuilder: Retrofit.Builder, okHttpClient: OkHttpClient): NotesAPI {
-        return retrofitBuilder.client(okHttpClient).build().create(NotesAPI::class.java)
+        return retrofitBuilder
+            .client(okHttpClient)
+            .build()
+            .create(NotesAPI::class.java)
     }
 }

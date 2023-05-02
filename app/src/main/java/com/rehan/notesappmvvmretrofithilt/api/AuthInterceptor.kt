@@ -6,15 +6,22 @@ import okhttp3.Response
 import javax.inject.Inject
 
 // What does Interceptor do?
-// Before sending request to API, interceptor adds header to request and then request goes to API
+// Before sending request to API, interceptor adds header basically adding token to our API request and then request goes to API and then API gives response for every user as per there unique token. Data is shown as per user token.
+// This header is the authorisation header which has token inside.
 
+// We have to add this class in retrofit module.
+
+// This class is the best way to add headers for all our API requests automatically.
+// We don't need to add token to all our API request individually because it will take more times if we have lots of API request in our API interface.
+// This class will take care of everything automatically for adding headers to all API request.
+// We need to extend this class from inbuilt Interceptor class of Okhttp library.
 class AuthInterceptor @Inject constructor() : Interceptor {
 
     @Inject
     lateinit var tokenManager: TokenManager
 
     // This intercept method will observe our request to API and do something like adding header to request
-    // Here we are going to add header i.e. token to our request
+    // Here we are going to add header i.e. token to our API request
     // Before sending request to API, first we will get that request and will add header to it and then we will tell request go and hit API
 
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -22,7 +29,7 @@ class AuthInterceptor @Inject constructor() : Interceptor {
         val request = chain.request().newBuilder()
 
         val token = tokenManager.getToken()
-        request.addHeader("Authorization", "Bearer $token")     // "Bearer" is the api requirement and we have to pass like this only whenever we want to add token header to it
+        request.addHeader("Authorization", "Bearer $token")     // "Bearer" keyword is the api requirement actually and we have to pass like this only whenever we want to add header i.e token to it
 
         return chain.proceed(request.build())
     }

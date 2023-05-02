@@ -75,6 +75,7 @@ class LoginFragment : Fragment() {
             binding.progressBar.visibility = View.GONE
             when(it){
                 is NetworkResult.Success -> {
+                    // When we get success response in postman for login page, we will be getting response which has token as well. we will save that token response.
                     tokenManager.saveToken(it.data!!.token)
                     findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
                 }
