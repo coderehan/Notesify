@@ -1,4 +1,4 @@
-package com.rehan.notesappmvvmretrofithilt.models
+package com.rehan.notesappmvvmretrofithilt.models.user
 
 data class User(
     val __v: Int,

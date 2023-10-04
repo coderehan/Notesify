@@ -2,13 +2,10 @@ package com.rehan.notesappmvvmretrofithilt.viewmodels
 
 import android.text.TextUtils
 import android.util.Patterns
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rehan.notesappmvvmretrofithilt.models.UserRequest
-import com.rehan.notesappmvvmretrofithilt.models.UserResponse
+import com.rehan.notesappmvvmretrofithilt.models.user.UserRequest
 import com.rehan.notesappmvvmretrofithilt.repositories.UserRepository
-import com.rehan.notesappmvvmretrofithilt.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

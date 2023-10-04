@@ -1,7 +1,6 @@
 package com.rehan.notesappmvvmretrofithilt.fragments
 
 import android.os.Bundle
-import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.rehan.notesappmvvmretrofithilt.R
 import com.rehan.notesappmvvmretrofithilt.databinding.FragmentLoginBinding
-import com.rehan.notesappmvvmretrofithilt.models.UserRequest
+import com.rehan.notesappmvvmretrofithilt.models.user.UserRequest
 import com.rehan.notesappmvvmretrofithilt.utils.NetworkResult
 import com.rehan.notesappmvvmretrofithilt.utils.TokenManager
 import com.rehan.notesappmvvmretrofithilt.viewmodels.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Observer
 import javax.inject.Inject
 
 @AndroidEntryPoint

@@ -1,7 +1,7 @@
 package com.rehan.notesappmvvmretrofithilt.api
 
-import com.rehan.notesappmvvmretrofithilt.models.UserRequest
-import com.rehan.notesappmvvmretrofithilt.models.UserResponse
+import com.rehan.notesappmvvmretrofithilt.models.user.UserRequest
+import com.rehan.notesappmvvmretrofithilt.models.user.UserResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.rehan.notesappmvvmretrofithilt.databinding.AdapterNotesItemBinding
-import com.rehan.notesappmvvmretrofithilt.models.NotesResponse
+import com.rehan.notesappmvvmretrofithilt.models.notes.NotesResponse
 
 class NotesAdapter(private val onNotesClicked: (NotesResponse) -> Unit) : androidx.recyclerview.widget.ListAdapter<NotesResponse, NotesAdapter.ViewHolder>(ComparatorDiffUtil()) {
 

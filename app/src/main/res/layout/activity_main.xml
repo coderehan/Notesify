@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         tools:context=".activities.MainActivity">
 
+        <!--FragmentContainerView has multiple fragments that needs to displayed in this MainActivity-->
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
             android:name="androidx.navigation.fragment.NavHostFragment"

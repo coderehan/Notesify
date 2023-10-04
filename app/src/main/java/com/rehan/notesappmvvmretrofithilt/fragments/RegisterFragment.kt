@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.rehan.notesappmvvmretrofithilt.R
 import com.rehan.notesappmvvmretrofithilt.databinding.FragmentRegisterBinding
-import com.rehan.notesappmvvmretrofithilt.models.UserRequest
+import com.rehan.notesappmvvmretrofithilt.models.user.UserRequest
 import com.rehan.notesappmvvmretrofithilt.utils.NetworkResult
 import com.rehan.notesappmvvmretrofithilt.utils.TokenManager
 import com.rehan.notesappmvvmretrofithilt.viewmodels.UserViewModel
@@ -70,7 +70,7 @@ class RegisterFragment : Fragment() {
 
     }
 
-    private fun getUserRequest(): UserRequest{
+    private fun getUserRequest(): UserRequest {
         val email = binding.etEmail.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
         val username = binding.etUsername.text.toString().trim()
@@ -84,7 +84,7 @@ class RegisterFragment : Fragment() {
 
     private fun bindObservers() {
         userViewModel.userResponseLiveData.observe(viewLifecycleOwner, Observer {
-            binding.progressBar.visibility = View.GONE       // Hiding progress bar when we observe the data
+            binding.progressBar.visibility = View.GONE       // Hiding progress bar once we observe the data
             when(it){
                 is NetworkResult.Success -> {
                     // When we get success response in postman for registration page, we will be getting response which has token as well. we will save that token response.

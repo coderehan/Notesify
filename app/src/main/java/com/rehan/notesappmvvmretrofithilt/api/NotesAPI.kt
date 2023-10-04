@@ -1,7 +1,7 @@
 package com.rehan.notesappmvvmretrofithilt.api
 
-import com.rehan.notesappmvvmretrofithilt.models.NotesRequest
-import com.rehan.notesappmvvmretrofithilt.models.NotesResponse
+import com.rehan.notesappmvvmretrofithilt.models.notes.NotesRequest
+import com.rehan.notesappmvvmretrofithilt.models.notes.NotesResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -15,10 +15,10 @@ interface NotesAPI {
     @POST("/note")
     suspend fun createNotes(@Body notesRequest: NotesRequest): Response<NotesResponse>
 
-    @PUT("/note/{noteId}")      // {} denotes dynamic which means user can update any notes from the list. when we pass parameter in {} we have to use @Path annotation
+    @PUT("/note/{noteId}")      // {} denotes dynamic which means user can update any notes from the list. when we pass parameter inside {} we have to use @Path annotation
     suspend fun updateNotes(@Path("noteId") noteId: String, @Body notesRequest: NotesRequest) : Response<NotesResponse>
 
-    @DELETE("/note/{noteId}")   // When we pass anything in {} we have to use @Path annotation
+    @DELETE("/note/{noteId}")   // When we pass anything inside {} we have to use @Path annotation
     suspend fun deleteNotes(@Path("noteId") noteId: String) : Response<NotesResponse>
 
 

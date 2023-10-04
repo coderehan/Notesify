@@ -2,7 +2,7 @@ package com.rehan.notesappmvvmretrofithilt.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rehan.notesappmvvmretrofithilt.models.NotesRequest
+import com.rehan.notesappmvvmretrofithilt.models.notes.NotesRequest
 import com.rehan.notesappmvvmretrofithilt.repositories.NotesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

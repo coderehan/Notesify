@@ -9,11 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
-import com.rehan.notesappmvvmretrofithilt.R
-import com.rehan.notesappmvvmretrofithilt.databinding.FragmentMainBinding
 import com.rehan.notesappmvvmretrofithilt.databinding.FragmentNoteBinding
-import com.rehan.notesappmvvmretrofithilt.models.NotesRequest
-import com.rehan.notesappmvvmretrofithilt.models.NotesResponse
+import com.rehan.notesappmvvmretrofithilt.models.notes.NotesRequest
+import com.rehan.notesappmvvmretrofithilt.models.notes.NotesResponse
 import com.rehan.notesappmvvmretrofithilt.utils.NetworkResult
 import com.rehan.notesappmvvmretrofithilt.viewmodels.NotesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -83,13 +81,13 @@ class NoteFragment : Fragment() {
         // Getting data from source fragment where we pass data and displaying in this destination fragment
         // We use arguments to get data from bundle
         val jsonNotes = arguments?.getString("note")
-        if(jsonNotes != null){
+        if(jsonNotes != null){      // If it is not null, it means it belongs to updated view. Just show the data in the edittext.
             notesResponse = Gson().fromJson(jsonNotes, NotesResponse::class.java)   // Deserializing
             notesResponse?.let {
                 binding.etTitle.setText(it.title)
                 binding.etDescription.setText(it.description)
             }
-        }else{
+        }else{      // If it is null, it means we have to add new notes
             binding.tvHeader.text = "Add Notes"
             binding.ivDeleteNotes.visibility = View.GONE
         }

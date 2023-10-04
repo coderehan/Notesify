@@ -1,4 +1,4 @@
-package com.rehan.notesappmvvmretrofithilt.models
+package com.rehan.notesappmvvmretrofithilt.models.notes
 
 data class NotesResponse(
     val __v: Int,

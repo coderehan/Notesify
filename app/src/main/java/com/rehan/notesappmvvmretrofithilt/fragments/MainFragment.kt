@@ -14,7 +14,7 @@ import com.google.gson.Gson
 import com.rehan.notesappmvvmretrofithilt.R
 import com.rehan.notesappmvvmretrofithilt.adapters.NotesAdapter
 import com.rehan.notesappmvvmretrofithilt.databinding.FragmentMainBinding
-import com.rehan.notesappmvvmretrofithilt.models.NotesResponse
+import com.rehan.notesappmvvmretrofithilt.models.notes.NotesResponse
 import com.rehan.notesappmvvmretrofithilt.utils.NetworkResult
 import com.rehan.notesappmvvmretrofithilt.viewmodels.NotesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,7 +42,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindObservers()
-        notesViewModel.getNotes()
+        notesViewModel.getNotes()       // Here we will bring all our notes from API and display in recyclerview
         binding.rvNotes.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.rvNotes.adapter = adapter
         binding.fab.setOnClickListener {
@@ -55,7 +55,7 @@ class MainFragment : Fragment() {
             binding.progressBar.visibility = View.GONE
             when(it){
                 is NetworkResult.Success ->{
-                    adapter.submitList(it.data)
+                    adapter.submitList(it.data)     // Setting data in recyclerview adapter
                 }
                 is NetworkResult.Error ->{
                     Toast.makeText(requireContext(), it.message.toString(), Toast.LENGTH_LONG).show()
@@ -71,7 +71,7 @@ class MainFragment : Fragment() {
     private fun onNotesClicked(notesResponse: NotesResponse){
         // Passing data from one fragment to another fragment using bundle
         val bundle = Bundle()
-        bundle.putString("note", Gson().toJson(notesResponse))      // As data is coming from API, we use Gson to convert data into java/kotlin objects. This Gson will return string
+        bundle.putString("note", Gson().toJson(notesResponse))      // As data is coming from API, we use Gson to convert json data into java/kotlin objects. This Gson will return string
         findNavController().navigate(R.id.action_mainFragment_to_noteFragment, bundle)
     }
 
