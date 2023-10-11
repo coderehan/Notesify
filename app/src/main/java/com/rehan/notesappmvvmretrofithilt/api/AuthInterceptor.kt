@@ -16,6 +16,8 @@ import javax.inject.Inject
 // We don't need to add token to all our API request individually because it will take more times if we have lots of API request in our API interface.
 // This class will take care of everything automatically for adding headers to all API request.
 // We need to extend this class from inbuilt Interceptor class of Okhttp library.
+
+// The purpose of this class is to add token as header for all notes api request automatically instead of adding them one by one in notes api interface. Because every user will have different notes and these notes are associated with token. So we need token which has all the notes of user inside it.
 class AuthInterceptor @Inject constructor() : Interceptor {     // This Interceptor class is derived from OkHttp
 
     @Inject

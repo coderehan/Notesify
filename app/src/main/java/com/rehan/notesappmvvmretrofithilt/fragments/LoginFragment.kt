@@ -32,6 +32,12 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
 
+        // Here in this login page, we will check whether we have token or not.
+        // If we have token already, we will redirect user to main screen instead of showing signin page again.
+        if(tokenManager.getToken() != null){        // != null means we have token
+            findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
+        }
+
         return binding.root
     }
 

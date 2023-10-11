@@ -64,7 +64,7 @@ class NoteFragment : Fragment() {
         notesViewModel.statusLiveData.observe(viewLifecycleOwner, Observer {
             when (it){
                 is NetworkResult.Success ->{
-                    findNavController().popBackStack()
+                    findNavController().popBackStack()      // Once the note is created or updated or deleted, we will redirect user to main fragment.
                 }
                 is NetworkResult.Error ->{
 
